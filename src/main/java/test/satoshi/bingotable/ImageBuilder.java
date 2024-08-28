@@ -17,15 +17,15 @@ public class ImageBuilder {
     public BufferedImage BuildImage(int[][] data){
         BufferedImage img = initImage();
 
-        g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
-
-        paintBackground();
-        paintOutline();
-        paintGrid();
-        paintHeading();
-        paintLetters();
-        paintData(data);
+//        g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+//        g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+//
+//        paintBackground();
+//        paintOutline();
+//        paintGrid();
+//        paintHeading();
+//        paintLetters();
+//        paintData(data);
 
         return img;
     }
