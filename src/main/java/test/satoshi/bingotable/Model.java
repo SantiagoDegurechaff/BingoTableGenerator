@@ -19,6 +19,21 @@ public class Model {
 
     public List<int[][]> data;
 
+    public Model(){
+        this.data = new ArrayList<>();
+        this.filas = 5;
+        this.columnas = 5;
+        this.rangoCol = 15;
+        this.tableCount = 1;
+        this.cellW = 50;
+        this.cellH = 50;
+
+        this.headingFontSize = 64;
+        this.headingFont = new Font("Microsoft Sans Serif", Font.PLAIN, headingFontSize);
+        this.numFontSize = 48;
+        this.numFont = headingFont.deriveFont((float)numFontSize);
+    }
+
     public Model(int filas, int columnas, int rangoCol, int count, int cellW, int cellH, Font headingFont, Font numFont, int headingFontSize, int numFontSize){
         this.data = new ArrayList<>();
         this.filas = filas;

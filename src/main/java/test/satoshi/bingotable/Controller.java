@@ -8,42 +8,29 @@ import java.io.File;
 import java.io.IOException;
 
 public class Controller {
-    JFrame frame;
     Model model;
-    ImageBuilder builder;
     Generator generator;
+    ViewBuilder viewBuilder;
 
     public Controller(JFrame frame){
-        Font headingFont = new Font("Microsoft Sans Serif", Font.PLAIN, 1);
-        Font numFont = headingFont;
+//        Font headingFont = new Font("Microsoft Sans Serif", Font.PLAIN, 1);
+//        Font numFont = headingFont;
+//
+//        model = new Model(5, 5, 15, 1
+//                , 50, 50, headingFont, numFont, 64, 48);
 
-        model = new Model(5, 5, 15, 1
-                , 50, 50, headingFont, numFont, 64, 48);
+        model = new Model();
         generator = new Generator(model);
-        builder = new ImageBuilder(model);
-        this.frame = frame;
+        viewBuilder = new ViewBuilder(model, frame);
 
         generator.fillData();
 
-        exportarImagenes();
+//        exportarImagenes();
     }
 
-    public void paint(Graphics g){
-//        Image img = builder.BuildImage(model.data.get(0));
-//
-//        g.drawImage(img, 40, 40, frame);
-
-        Image img = new ImagePopulater(model).BuildImage(model.data.get(0));
-
-        float aspectRatio = (float) img.getWidth(frame) / img.getHeight(frame);
-        int dy2 = 500;
-        int dx2 = (int) (dy2 * aspectRatio);
-
-        Graphics2D g2 = (Graphics2D) g;
-        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-
-        g2.drawImage(img, 40, 40, dx2, dy2, 0, 0, img.getWidth(frame), img.getHeight(frame), frame);
-    }
+public void paint(Graphics g){
+        viewBuilder.paint(g);
+}
 
     private void exportarImagenes(){
         BufferedImage img;
