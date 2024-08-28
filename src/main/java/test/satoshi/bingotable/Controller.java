@@ -14,11 +14,11 @@ public class Controller {
     Generator generator;
 
     public Controller(JFrame frame){
-        Font headingFont = new Font("Arial", Font.PLAIN, 1);
+        Font headingFont = new Font("Microsoft Sans Serif", Font.PLAIN, 1);
         Font numFont = headingFont;
 
         model = new Model(5, 5, 15, 1
-                , 50, 50, headingFont, numFont, 32, 20);
+                , 50, 50, headingFont, numFont, 64, 48);
         generator = new Generator(model);
         builder = new ImageBuilder(model);
         this.frame = frame;
@@ -26,14 +26,23 @@ public class Controller {
         generator.fillData();
 
         exportarImagenes();
-
-
     }
 
     public void paint(Graphics g){
-        Image img = builder.BuildImage(model.data.get(0));
+//        Image img = builder.BuildImage(model.data.get(0));
+//
+//        g.drawImage(img, 40, 40, frame);
 
-        g.drawImage(img, 40, 40, frame);
+        Image img = new ImagePopulater(model).BuildImage(model.data.get(0));
+
+        float aspectRatio = (float) img.getWidth(frame) / img.getHeight(frame);
+        int dy2 = 500;
+        int dx2 = (int) (dy2 * aspectRatio);
+
+        Graphics2D g2 = (Graphics2D) g;
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+        g2.drawImage(img, 40, 40, dx2, dy2, 0, 0, img.getWidth(frame), img.getHeight(frame), frame);
     }
 
     private void exportarImagenes(){

@@ -1,7 +1,10 @@
 package test.satoshi.bingotable;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.util.Objects;
 
 public class ImageBuilder {
     private final Model model;
@@ -17,15 +20,15 @@ public class ImageBuilder {
     public BufferedImage BuildImage(int[][] data){
         BufferedImage img = initImage();
 
-//        g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-//        g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
-//
-//        paintBackground();
-//        paintOutline();
-//        paintGrid();
-//        paintHeading();
-//        paintLetters();
-//        paintData(data);
+        g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+
+        paintBackground();
+        paintOutline();
+        paintGrid();
+        paintHeading();
+        paintLetters();
+        paintData(data);
 
         return img;
     }
@@ -90,7 +93,7 @@ public class ImageBuilder {
         g.setColor(Color.black);
         g.drawRoundRect(0,0, imgW-1, imgH-1, 10,10);
     }
-    
+
     private void paintData(int[][] data){
         g.setColor(Color.black);
         g.setFont(model.numFont);
@@ -105,7 +108,7 @@ public class ImageBuilder {
             for(int j=0; j<model.columnas; j++){
                 num = String.valueOf(data[i][j]);
                 padding = fm.charsWidth(num.toCharArray(), 0, num.length());
-                g.drawString(num,x - padding / 2, y + fm.getHeight() / 2);
+                g.drawString(num,x - padding / 2, y + fm.getMaxAscent() / 2);
                 y += model.cellH;
             }
             x += model.cellW;

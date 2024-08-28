@@ -5,16 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Model {
-    public class coord{
-        int f;
-        int c;
-    }
-
     public final int filas;
     public final int columnas;
     public final int rangoCol;
     public final int tableCount;
-
     public final int cellW;
     public final int cellH;
 
